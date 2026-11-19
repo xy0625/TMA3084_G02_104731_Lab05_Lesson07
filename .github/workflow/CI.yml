@@ -1,0 +1,33 @@
+
+name: CI
+
+on:
+  push:
+    branches: [main, 'feature/**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        working-directory: bottom_navigator_bar_lab
+        run: flutter pub get
+
+      - name: Check formatting
+        working-directory: bottom_navigator_bar_lab
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze project
+        working-directory: bottom_navigator_bar_lab
+        run: flutter analyze
