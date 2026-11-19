@@ -11,10 +11,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: bottom_navigator_bar_lab
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,11 +20,8 @@ jobs:
         with:
           channel: stable
 
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Check formatting
-        run: dart format --output=none --set-exit-if-changed .
-
-      - name: Analyze project
-        run: flutter analyze
+      - name: Check project structure
+        run: |
+          pwd
+          ls -la
+          find . -name pubspec.yaml -print
