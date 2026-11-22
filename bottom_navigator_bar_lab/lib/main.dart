@@ -11,7 +11,7 @@ class TabModel extends ChangeNotifier {
 
   int get currentIndex => _currentIndex;
 
-  void setIndex(int index) {
+  void updateCurrentIndex(int index) {
     if (index == _currentIndex) return;
     _currentIndex = index;
     notifyListeners();
@@ -58,7 +58,7 @@ class BottomNavLab extends StatelessWidget {
         iconSize: 30,
         currentIndex: currentIndex,
         onTap: (int index) {
-          context.read<TabModel>().setIndex(index);
+          context.read<TabModel>().updateCurrentIndex(index);
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
